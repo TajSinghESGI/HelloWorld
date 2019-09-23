@@ -6,7 +6,7 @@ app.get('/', function (req, res) { res.send('Hello World!')
 })
 
 app.post('/chat', (req, res) => {
-  res.send('chat')
+  res.send('chatbot')
 })
 
 app.listen(port, function () {
