@@ -3,19 +3,38 @@ const app = express()
 var port = process.env.PORT || 3000
 
 app.use(express.json())
+app.use(express.urlencoded())
 
-app.get('/', function (req, res) { res.send('Hello World!')
+
+app.get('/', (req, res) => {
+  const username = req.body.username
+  const message = req.body.message
+
+  res.end()
+})
+
+
+app.get('/hello', function (req, res) {
+  var name  = req.param('name')
+  res.send("Quel est votre nom ?")
+
+  if(name === undefined || name === "" ) {
+    res.send("Quel est votre nom ?")
+  }
+
+  res.send("Hello " + name)
+
 })
 
 app.post('/chat', (req, res) => {
-  if(req.body.msg == "ville"){
+  if(req.body.msg === "ville"){
     let ville = req.body.msg
     console.log("Nous sommes à Paris")
-    res.send(ville)
-  } else if (req.body.msg == "météo") {
+    res.send("Nous sommes a paris")
+  } else if (req.body.msg === "météo") {
     meteo = req.body.msg
     console.log("Il fait beau")
-    res.send(meteo)
+    res.send("Il fait beau")
   }
 })
 
